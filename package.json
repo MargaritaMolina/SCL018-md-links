@@ -4,13 +4,12 @@
   "type": "module",
   "scripts": {
     "start": "node src/run.js",
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "node-fetch": "^3.1.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
     "jest": "^27.4.5"
   }
 }
