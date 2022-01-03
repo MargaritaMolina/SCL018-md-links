@@ -13,8 +13,8 @@ const mdLinks = (fileName, options = { validate: false }) => {
         res.split(/\r?\n/).forEach((line) => {
           //regular expression that separates lines in JavaScript
 
-          //necesito extraer los enlances de cada linea
-          const lineLinks = line.match(/\[([^\]]+)]\((https?:\/\/[^\s)]+)\)/g);
+          //I need to extract the links from each line
+          const lineLinks = line.match(/\[([^\]]+)]\((https?:\/\/[^\s)]+)\)/g); // matching combinations of characters in chains.
           if (lineLinks) {
             lineLinks.forEach((link) => {
               const linkInfo = getLinkInfo(link);
@@ -22,15 +22,15 @@ const mdLinks = (fileName, options = { validate: false }) => {
                 href: linkInfo.href,
                 text: linkInfo.text,
                 file: fileName,
-              });
+              }); //Creating an object that stores the link info/ Key-value pairs
             });
           }
         });
         if (options.validate) {
           fileLinks.forEach((link) => {
-            fetch(link.href)
+            fetch(link.href) //http request- it gives back a promise object that contains the result.
               .then((response) => {
-                link.status = response.status;
+                link.status = response.status; // object response is given back when when fetch is resolved
                 if (response.status <= 400) {
                   link.ok = true;
                 } else {
@@ -44,7 +44,7 @@ const mdLinks = (fileName, options = { validate: false }) => {
         }
         setTimeout(() => {
           resolve(fileLinks);
-        }, 5000); //Se espera 5 segundos antes de resolver la promesa.
+        }, 5000); //waiting 5 seconds before resolving the promise.
       })
       .catch((error) => {
         if (error && error.code === "ENOENT") {

@@ -15,7 +15,7 @@ export const getFilePath = (fileName) => {
 export const getLinkInfo = (link) => {
   let href = link.match(/\((https?:\/\/[^\s)]+)\)/g); // returns an array with links
   href = href[0];
-  href = href.replace("(", "");
+  href = href.replace("(", ""); //search a coincidence and replace it.
   href = href.replace(")", "");
   let text = link.match(/\[([^\]]+)]/g); // returns a text array
   text = text[0];
