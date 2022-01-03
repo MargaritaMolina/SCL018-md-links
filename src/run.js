@@ -1,5 +1,6 @@
 import mdLinks from "./index.js";
 const fileName = process.argv[2];
+console.log(fileName);
 const validate = process.argv[3];
 const options = {};
 if (validate === "--validate") {

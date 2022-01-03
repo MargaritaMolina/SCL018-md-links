@@ -13,7 +13,7 @@ const mdLinks = (fileName, options = { validate: false }) => {
         res.split(/\r?\n/).forEach((line) => {
           //regular expression that separates lines in JavaScript
 
-          //necesito extraer los enlances de la linea
+          //necesito extraer los enlances de cada linea
           const lineLinks = line.match(/\[([^\]]+)]\((https?:\/\/[^\s)]+)\)/g);
           if (lineLinks) {
             lineLinks.forEach((link) => {
@@ -44,7 +44,7 @@ const mdLinks = (fileName, options = { validate: false }) => {
         }
         setTimeout(() => {
           resolve(fileLinks);
-        }, 5000); //Se espera 5 segundos antes de resolver la promesa. No sé como saber que todas las promesas fetch terminaron.
+        }, 5000); //Se espera 5 segundos antes de resolver la promesa.
       })
       .catch((error) => {
         if (error && error.code === "ENOENT") {
